@@ -1,0 +1,502 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Meta tags for responsiveness, SEO, and character set -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aniket Ganguli's portfolio showcasing data analytics and Salesforce CRM skills.">
+    <meta name="keywords" content="Aniket Ganguli, Data Analyst, Salesforce CRM, Python, Django, Excel, Power BI, SQL">
+    <meta name="author" content="Aniket Ganguli">
+    <title>Aniket Ganguli | Data Analyst</title>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font 'Poppins' as per spec -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* Deeper dark background */
+            color: #f1f1f1; /* Lighter text for contrast */
+        }
+        .bg-custom-dark {
+            background-color: #1e1e1e; /* Slightly lighter dark for sections */
+        }
+        .text-custom-light {
+            color: #b0b0b0; /* Lighter text for secondary info */
+        }
+        .accent-color {
+            color: #4299e1; /* Teal-like accent */
+        }
+        .btn-custom {
+            background-color: #4299e1;
+            border-color: #4299e1;
+            color: #fff;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-custom:hover {
+            background-color: #3182ce;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+        }
+        .project-card {
+            background-color: #1e1e1e;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('{% static 'background.png' %}') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .typewriter-text::after {
+            content: '|';
+            animation: blink-caret 1s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+        /* Staggered animation for skills and contact links */
+        .staggered-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .staggered-animation.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .form-control, .form-control:focus {
+            background-color: #2d3748;
+            color: #f1f1f1;
+            border-color: #4a5568;
+        }
+        .form-control::placeholder {
+            color: #a0aec0;
+        }
+
+        /* NEW STYLE FOR CIRCULAR IMAGE CONTAINER */
+        .profile-container {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #1e1e1e; /* Match the card background */
+            box-shadow: 0 0 0 4px #4299e1, 0 0 0 8px #121212; /* Subtle accent border */
+            border: 3px solid white;
+            background-image: url("{% static 'aniket_ganguli.jpg' %}"); /* ADDED BACKGROUND IMAGE HERE */
+            background-size: contain; /* CHANGED FROM `cover` TO `contain` */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .profile-container img {
+            display: none; /* Hide the img tag so only the background image is shown */
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <!-- Load Django's static files system -->
+    {% load static %}
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 accent-color" href="#">Aniket Ganguli</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-md-3">
+                        <a class="btn btn-outline-light" href="path/to/your/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-bg text-white text-center py-5">
+        <div class="container py-5">
+            <div class="row align-items-center fade-in-on-scroll">
+                <div class="col-md-6 mb-4 mb-md-0 d-flex justify-content-center">
+                    <!-- The correct way to link your photo using Django's static files -->
+                    <!-- IMPORTANT: Make sure your photo is in the `portfolio/static/` folder -->
+                    <div class="profile-container">
+                         <img src="{% static 'aniket_ganguli.jpg' %}" alt="Aniket Ganguli's professional headshot">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-3 fw-bold">Aniket Ganguli</h1>
+                    <p class="lead fw-normal typewriter-text"></p>
+                    <div class="mt-4">
+                        <a href="#projects" class="btn btn-light btn-lg me-3">View My Work</a>
+                        <a href="path/to/your/resume.pdf" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener noreferrer">Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-5 bg-custom-dark fade-in-on-scroll">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="display-5 fw-bold text-white">About Me</h2>
+                </div>
+                <div class="col-lg-8 mx-auto text-center text-custom-light">
+                    <p class="lead">I’m an aspiring Data Analyst with a strong command of Microsoft Excel, Power BI, SQL, and Python. I have hands-on experience in Salesforce CRM, enabling me to work seamlessly with customer data and business processes. Alongside my data expertise, I hold foundational skills in web technologies like HTML, CSS, and JavaScript, giving me the versatility to approach projects with both analytical and technical perspectives. I’m passionate about transforming raw information into meaningful insights that drive smarter decisions.</p>
+                    <a href="https://www.linkedin.com/in/aniket-ganguli-aa1904271/" class="btn btn-outline-secondary mt-3" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin me-2"></i>Learn More on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 fade-in-on-scroll">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white">My Projects</h2>
+                <p class="lead text-custom-light">A collection of my work in data analytics and development.</p>
+            </div>
+            <!-- Project Filter Buttons -->
+            <div class="text-center mb-4">
+                <button type="button" class="btn btn-outline-info me-2 active" data-filter="all">All</button>
+                <button type="button" class="btn btn-outline-info me-2" data-filter="excel">Excel</button>
+                <button type="button" class="btn btn-outline-info me-2" data-filter="powerbi">Power BI</button>
+                <button type="button" class="btn btn-outline-info me-2" data-filter="salesforce">Salesforce</button>
+            </div>
+            <div class="row g-4" id="project-list">
+                <!-- Project Card Placeholder -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="excel">
+                    <div class="card project-card h-100 shadow-lg">
+                        <img src="{% static 'Dashboard1.png' %}" class="card-img-top" alt="Project thumbnail">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-custom-light">Superstore Sales Dashboard in Excel</h5>
+                            <p class="card-text text-custom-light">This Excel project presents a comprehensive Sales Analysis Dashboard built using Superstore data. It includes thorough data cleaning, feature engineering, visual analytics using PivotTables and charts, interactive slicers, and KPI tracking to derive key business insights.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/AniketGanguli/Superstore-Sales-Insights-Dashboard" class="btn btn-custom me-2" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="excel">
+                    <div class="card project-card h-100 shadow-lg">
+                        <img src="{% static 'Dashboard2.png' %}" class="card-img-top" alt="Project thumbnail">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-custom-light">Employee Attrition Analysis Dashboard</h5>
+                            <p class="card-text text-custom-light">To uncover key drivers of employee attrition using Microsoft Excel and build an interactive dashboard that helps HR and leadership teams make strategic, data-driven decisions.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/AniketGanguli/excel-employee-attrition-dashboard" class="btn btn-custom me-2" target="_blank">View Project</a>                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="excel">
+                    <div class="card project-card h-100 shadow-lg">
+                        <img src="{% static 'Dashboard3.png' %}" class="card-img-top" alt="Project thumbnail">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-custom-light">FIFA World Cup Analysis Dashboard</h5>
+                            <p class="card-text text-custom-light">This dashboard provides a historical analysis of the FIFA World Cup from 1930 to 2022. It covers tournament hosts, champions, runner-ups, top scorers, attendance records, and major awards. Data is visualized in a clean and interactive format.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/AniketGanguli/fifa-worldcup-dashboard" class="btn btn-custom me-2" target="_blank">View Project</a>                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="powerbi">
+                    <div class="card project-card h-100 shadow-lg">
+                        <img src="{% static 'Dashboard4.png' %}" class="card-img-top" alt="Project thumbnail">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-custom-light">Global Zomato Restaurant Insights Dashboard</h5>
+                            <p class="card-text text-custom-light">This Power BI dashboard provides a detailed analysis of Zomato restaurant data, focusing on restaurant ratings, cuisines, locations, and pricing. The goal is to derive actionable insights for food delivery platforms and users by understanding patterns in customer preferences and restaurant performance.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/AniketGanguli/Global-Zomato-Restaurant-Insights-Dashboard" class="btn btn-custom me-2" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="salesforce">
+                    <div class="card project-card h-100 shadow-lg">
+                        <img src="{% static 'Custom App for Handsmen Threads.jpg' %}" class="card-img-top" alt="Project thumbnail">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-custom-light">HandsMen Threads: Elevating the Art of Sophistication in Men's Fashion</h5>
+                            <p class="card-text text-custom-light">This project outlines the implementation of a customized Salesforce CRM solution for Hands
+Men Threads, a premium men's fashion and tailoring brand. The core objectives were to
+streamline business operations, enhance customer engagement, and ensure consistent data
+integrity across all organizational departments.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/AniketGanguli/HandsMen_Threads_Project" class="btn btn-custom me-2" target="_blank">View Project</a>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-custom-dark fade-in-on-scroll">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-white">Skills</h2>
+        </div>
+        <div class="row text-center g-4" id="skills-list">
+            
+            <div class="col-md-4 staggered-animation">
+                <div class="card p-4 h-100 shadow-lg bg-dark">
+                    <i class="fas fa-chart-pie fa-3x mb-3 accent-color"></i>
+                    <h4 class="fw-bold text-white">Data Analytics</h4>
+                    <p class="text-custom-light">Excel, Power BI, SQL, Python (Numpy, Matplotlib, Pandas)</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 staggered-animation">
+                <div class="card p-4 h-100 shadow-lg bg-dark">
+                    <i class="fas fa-handshake fa-3x mb-3 accent-color"></i>
+                    <h4 class="fw-bold text-white">CRM Tools</h4>
+                    <p class="text-custom-light">Salesforce</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 staggered-animation">
+                <div class="card p-4 h-100 shadow-lg bg-dark">
+                    <i class="fas fa-laptop-code fa-3x mb-3 accent-color"></i>
+                    <h4 class="fw-bold text-white">Web Development</h4>
+                    <p class="text-custom-light">HTML, CSS, JavaScript, Django</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 staggered-animation">
+                <div class="card p-4 h-100 shadow-lg bg-dark">
+                    <i class="fas fa-code fa-3x mb-3 accent-color"></i>
+                    <h4 class="fw-bold text-white">Programming</h4>
+                    <p class="text-custom-light">C, C++, Java, Python</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 fade-in-on-scroll">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white">Contact Me</h2>
+                <p class="lead text-custom-light">I'm currently seeking new opportunities. Let's connect!</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <!-- Placeholder Contact Form -->
+                    <div class="card bg-dark p-4 shadow-lg mb-4">
+                        <h5 class="text-white mb-3">Send me a message</h5>
+                        <form id="contact-form" method="post" onsubmit="event.preventDefault(); showThankYouModal();">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="YOUR_CSRF_TOKEN">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="text-center mt-4" id="contact-links-container">
+                        <p class="text-custom-light staggered-animation">Or connect on social media:</p>
+                        <a href="mailto:aniketganguli6@gmail.com?subject=Portfolio Contact - Aniket Ganguli" class="btn btn-outline-info me-2 mt-2 staggered-animation">
+                            <i class="fas fa-envelope me-2"></i>Email Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/aniket-ganguli-aa1904271/" class="btn btn-outline-info me-2 mt-2 staggered-animation" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin me-2"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/AniketGanguli" class="btn btn-outline-info me-2 mt-2 staggered-animation" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github me-2"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Aniket Ganguli. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="btn btn-custom rounded-circle shadow-lg" style="position: fixed; bottom: 20px; right: 20px; display: none;">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Thank you modal HTML -->
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title" id="thankYouModalLabel">Message Sent!</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Thank you for your message. I will get back to you as soon as possible.
+          </div>
+          <div class="modal-footer border-top-0">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Typewriter effect
+        const text = "Data Analyst | Salesforce CRM Specialist.";
+        let i = 0;
+        const typewriterElement = document.querySelector('.typewriter-text');
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', typeWriter);
+
+        // Fade-in animation for sections on scroll (existing feature)
+        const faders = document.querySelectorAll('.fade-in-on-scroll');
+        const appearOptions = { threshold: 0.2 };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Staggered animation for skills and contact links
+        const staggeredObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Check if the skills or contact section is visible
+                    if (entry.target.id === 'skills-list' || entry.target.id === 'contact-links-container') {
+                        const items = entry.target.querySelectorAll('.staggered-animation');
+                        items.forEach((item, index) => {
+                            // Add a delay to each item
+                            setTimeout(() => {
+                                item.classList.add('is-visible');
+                            }, index * 150); // 150ms delay for each item
+                        });
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe the skills list and contact links container
+        const skillsList = document.getElementById('skills-list');
+        const contactLinksContainer = document.getElementById('contact-links-container');
+        if (skillsList) staggeredObserver.observe(skillsList);
+        if (contactLinksContainer) staggeredObserver.observe(contactLinksContainer);
+
+        // Project filtering
+        document.querySelectorAll('[data-filter]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-filter]').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                const filter = e.target.getAttribute('data-filter');
+                document.querySelectorAll('.project-item').forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Show/hide back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Function to show a thank you modal
+        function showThankYouModal() {
+            const myModal = new bootstrap.Modal(document.getElementById('thankYouModal'));
+            myModal.show();
+        }
+    </script>
+</body>
+</html>
