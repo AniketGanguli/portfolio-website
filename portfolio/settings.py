@@ -16,6 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ==============================================================================
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# On Render, set this as an environment variable.
 SECRET_KEY = 'django-insecure-YOUR_OWN_SECRET_KEY_GOES_HERE'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -37,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Add your app names here if you have any
 ]
 
 MIDDLEWARE = [
@@ -52,12 +52,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'your_project_name.urls' # <-- Make sure 'your_project_name' is correct
+# FIXED: Replaced 'your_project_name' with 'portfolio'
+ROOT_URLCONF = 'portfolio.urls' 
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # If you have a top-level templates folder
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,15 +71,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'your_project_name.wsgi.application' # <-- Make sure 'your_project_name' is correct
+# FIXED: Replaced 'your_project_name' with 'portfolio'
+WSGI_APPLICATION = 'portfolio.wsgi.application' 
 
 
 # ==============================================================================
 # DATABASE
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # ==============================================================================
 
-# The default SQLite database is fine for a small portfolio.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -89,7 +89,6 @@ DATABASES = {
 
 # ==============================================================================
 # PASSWORD VALIDATION
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 # ==============================================================================
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -102,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # ==============================================================================
 # INTERNATIONALIZATION
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
 # ==============================================================================
 
 LANGUAGE_CODE = 'en-us'
@@ -113,24 +111,16 @@ USE_TZ = True
 
 # ==============================================================================
 # STATIC FILES (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 # ==============================================================================
 
 STATIC_URL = 'static/'
-
-# This tells Django where to find your static files in your project folders.
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# This is the folder where 'collectstatic' will place all files for production.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# This tells WhiteNoise to look for static files in the 'staticfiles' directory.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # ==============================================================================
 # DEFAULT PRIMARY KEY FIELD TYPE
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 # ==============================================================================
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
