@@ -24,7 +24,7 @@ DEBUG = False
 
 # Add your live domain name here after you deploy.
 # Example: ALLOWED_HOSTS = ['aniket-portfolio.onrender.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['portfolio-website-ef7r.onrender.com']
 
 
 # ==============================================================================
